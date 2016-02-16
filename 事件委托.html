@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <span>test</span>
+        </li>
+    </ul>
+</body>
+<script type="text/javascript">
+    var element = document.querySelector("ul")||document.getElementsByTagName("ul");
+
+    var type = "click";
+
+    console.log(element);
+
+    function handler(e){
+        console.log(e,this);
+        if(e.target && e.target.nodeName == "li") {
+            alert(1);
+        }
+    }
+
+    if (element.addEventListener) {
+        element.addEventListener(type, handler, true);
+    } else if (element.attachEvent) {
+        element.attachEvent("on" + type, handler);
+    } else {
+        element["on" + type] = handler;
+    }
+
+</script>
+</html>
