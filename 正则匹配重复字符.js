@@ -4,4 +4,3 @@ console.log(ret);  // abbbeeee12223
 var a = "1234567890";
 var ret = a.replace(/((?=\d)\d{3})+\b/,"");
 console.log(ret);
-
