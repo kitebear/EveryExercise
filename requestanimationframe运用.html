@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="J_num" style="margin: 50px; width: 200px; height: 200px; display: inline-block; background: #ccc"></div>
+<div id="J_num2" style="margin: 50px; width: 200px; height: 200px; display: inline-block; background: #ccc"></div>
+<script src="http://libs.useso.com/js/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    // requestAnim shim layer by Paul Irish
+    window.requestAnimFrame = (function(){
+        return  window.requestAnimationFrame       ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame    ||
+                window.oRequestAnimationFrame      ||
+                window.msRequestAnimationFrame     ||
+                function(/* function */ callback, /* DOMElement */ element){
+                    window.setTimeout(callback, 1000 / 60);
+                };
+    })();
+
+    //未优化状态
+    (function(){
+        var timer;
+        var $txt = $('#J_num'),
+                num = 0;
+        function play(){
+            //定时器
+            timer = setTimeout(function(){
+                stop();
+                next();
+            },1000)
+        }
+
+        function stop(){
+            clearTimeout(timer)
+        }
+
+        function next(){
+            $txt.text(num++);
+            play();
+        }
+        play();
+    })();
+
+    //使用raf优化后
+    (function(){
+        var timer;
+        var $txt = $('#J_num2'),
+                num = 0;
+        function play(){
+            //定时器
+            timer = setTimeout(function(){
+                requestAnimationFrame(function(){
+                    stop();
+                    next();
+                });
+            },1000)
+        }
+
+        function stop(){
+            clearTimeout(timer)
+        }
+
+        function next(){
+            $txt.text(num++);
+            play();
+        }
+        play();
+    })();
+</script>
+</body>
+</html>
