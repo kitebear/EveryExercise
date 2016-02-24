@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>未知宽高元素水平垂直居中</title>
+</head>
+<style>
+    .parent2{
+        height:300px;
+        width: 300px;
+        text-align: center;
+        background: #FD0C70;
+    }
+    .parent2 span{
+        display: inline-block;;
+        width: 0;
+        height: 100%;
+        vertical-align: middle;
+        zoom: 1;/*BFC*/
+        *display: inline;
+    }
+    .parent2 .child{
+        display: inline-block;
+        color: #fff;
+        zoom: 1;/*BFC*/
+        *display: inline;
+    }
+
+</style>
+<body>
+<div class="parent1">
+    <div class="child">hello world-1</div>
+</div>
+
+<div class="parent2">
+    <span></span>
+    <div class="child">hello world-2</div>
+</div>
+</body>
+</html>
