@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    window.onload=function(){
+        document.getElementsByTagName('a')[0].onclick=function(){
+            if (window.XMLHttpRequest){
+                var xmlhttp=new XMLHttpRequest();
+            }else{
+                var xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            var method='GET';
+            var url=this.href;
+            xmlhttp.open(method,url);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange=function(){
+                if(xmlhttp.readyState==4){
+                    if(xmlhttp.status==200||xmlhttp.status==304){
+                        var txt=xmlhttp.responseText;
+                        var json=eval('('+txt+')');
+                        document.getElementById('name').innerHTML='姓名'+json.ruei.name;
+                        document.getElementById('age').innerHTML='年龄'+json.ruei.age;
+                        document.getElementById('job').innerHTML='工作'+json.ruei.job;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

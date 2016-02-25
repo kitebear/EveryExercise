@@ -1,0 +1,17 @@
+1.清除图片下方出现几像素的空白间隙
+
+img{display:block;}
+img{vertical-align:top;}
+2.不同浏览器的标签默认的外边距和内边距不同
+
+*｛margin:0;padding:0｝
+
+
+
+img{display:block}
+img{vertical-align: top}
+
+*{
+    margin:0;
+    padding:0;
+}
