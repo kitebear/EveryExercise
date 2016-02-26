@@ -1,0 +1,164 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<title>jQuery - Start Animation</title>-->
+    <!--<script type="text/javascript" src="zepto.js"></script>-->
+    <!--<script type="text/javascript">-->
+        <!--$(function () {-->
+            <!--$("div").css({ border: "1px solid red" });-->
+            <!--$("#div1").css({ height: "500px", width: "500px" }).bind("click", function (event) { alert("div1"); return false;});-->
+            <!--$("#div2").css({ height: "300px", width: "300px" }).bind("click", function (event) {  alert("div2"); });-->
+            <!--$("#div3").css({ height: "100px", width: "100px" }).bind("click", function (event) { alert("div3");  });-->
+            <!--$(document).bind("click", function (event) { alert("document"); });-->
+        <!--});-->
+    <!--</script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="div1">-->
+    <!--<div id="div2">-->
+        <!--<div id="div3">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<script type="text/javascript" src="zepto.js"></script>-->
+    <!--<title>Insert title here</title>-->
+    <!--<style type="text/css">-->
+        <!--.box1 {-->
+            <!--border: green 40px solid;-->
+            <!--width: 300px;-->
+            <!--height: 300px;-->
+            <!--margin: auto;-->
+        <!--}-->
+
+        <!--.box2 {-->
+            <!--border: yellow 40px solid;-->
+            <!--width: 220px;-->
+            <!--height: 220px;-->
+            <!--margin: auto;-->
+        <!--}-->
+
+        <!--span {-->
+            <!--position: relative;-->
+            <!--left: 50px;-->
+            <!--top: 50px;-->
+            <!--background-color: rgba(128, 128, 128, 0.22);-->
+        <!--}-->
+    <!--</style>-->
+
+    <!--<script type="text/javascript">-->
+        <!--window.onload = function() {-->
+            <!--document.getElementById("body").addEventListener("click",eventHandler);-->
+        <!--}-->
+        <!--function eventHandler(event) {-->
+            <!--console.log("时间："+new Date(event.timeStamp)+" 产生事件的节点：" + event.target.id +"  当前节点："+event.currentTarget.id);-->
+        <!--}-->
+    <!--</script>-->
+
+<!--</head>-->
+<!--<body id="body">-->
+<!--<div id="box1" class="box1">-->
+    <!--<div id="box2" class="box2">-->
+        <!--<span id="span">This is a span.</span>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<span style="font-family:Microsoft YaHei;font-size:10px;"><script type="text/javascript">-->
+    <!--window.onload = function() {-->
+        <!--document.getElementById("box1").addEventListener("click",function(event){-->
+            <!--alert("您好，我是最外层div。");-->
+        <!--});-->
+        <!--document.getElementById("box2").addEventListener("click",function(event){-->
+            <!--alert("您好，我是第二层div。");-->
+        <!--});-->
+        <!--document.getElementById("span").addEventListener("click",function(event){-->
+            <!--alert("您好，我是span。");-->
+        <!--});-->
+    <!--}-->
+<!--</script></span>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">-->
+<!--<HTML>-->
+<!--<HEAD>-->
+    <!--<TITLE> New Document </TITLE>-->
+    <!--<META NAME="Content-Type" CONTENT="text/html;charset=utf-8">-->
+    <!--<META NAME="Author" CONTENT="">-->
+    <!--<META NAME="Keywords" CONTENT="">-->
+    <!--<META NAME="Description" CONTENT="">-->
+<!--</HEAD>-->
+
+<!--<BODY>-->
+<!--<div id="outer">outer-->
+    <!--<p id="inner">inner-->
+        <!--<input type="button" id="btn" value="button">-->
+    <!--</p>-->
+
+<!--</div>-->
+<!--<SCRIPT LANGUAGE="JavaScript">-->
+    <!--&lt;!&ndash;-->
+    <!--var outer=document.getElementById("outer");-->
+    <!--var inner=document.getElementById("inner");-->
+    <!--var btn= document.getElementById("btn");-->
+    <!--alert(outer);-->
+    <!--alert(inner);-->
+    <!--alert(btn);-->
+    <!--outer.onclick=function(){-->
+        <!--alert("click outer");-->
+        <!--this.style.color="red";-->
+    <!--}-->
+    <!--inner.onclick=function(){-->
+        <!--this.style.color="blue";-->
+    <!--}-->
+    <!--btn.onclick=function(){-->
+        <!--this.style.color="yellow";-->
+    <!--}-->
+    <!--//&ndash;&gt;-->
+<!--</SCRIPT>-->
+<!--</BODY>-->
+<!--</HTML>-->
+
+
+<div>
+    <input type="button" value="测试事件冒泡" />
+</div>
+<script>
+    var $input = document.getElementsByTagName("input")[0];
+    var $div = document.getElementsByTagName("div")[0];
+    var $body = document.getElementsByTagName("body")[0];
+
+//    $input.onclick = function(e){
+//        this.style.border = "5px solid red"
+//        var e = e || window.e;
+//        alert("red")
+//    }
+//    $div.onclick = function(e){
+//        this.style.border = "5px solid green"
+//        alert("green")
+//    }
+//    $body.onclick = function(e){
+//        this.style.border = "5px solid yellow"
+//        alert("yellow")
+//    }
+
+
+    $input.addEventListener("click", function(){
+        this.style.border = "5px solid red";
+        alert("red")
+    }, true)
+    $div.addEventListener("click", function(){
+        this.style.border = "5px solid green";
+        alert("green")
+    }, false)
+    $body.addEventListener("click", function(){
+        this.style.border = "5px solid yellow";
+        alert("yellow")
+    }, true)
+</script>
