@@ -134,31 +134,31 @@
     var $div = document.getElementsByTagName("div")[0];
     var $body = document.getElementsByTagName("body")[0];
 
-//    $input.onclick = function(e){
-//        this.style.border = "5px solid red"
-//        var e = e || window.e;
-//        alert("red")
-//    }
-//    $div.onclick = function(e){
-//        this.style.border = "5px solid green"
-//        alert("green")
-//    }
-//    $body.onclick = function(e){
-//        this.style.border = "5px solid yellow"
-//        alert("yellow")
-//    }
-
-
-    $input.addEventListener("click", function(){
-        this.style.border = "5px solid red";
+    $input.onclick = function(e){
+        this.style.border = "5px solid red"
+        var e = e || window.e;
         alert("red")
-    }, true)
-    $div.addEventListener("click", function(){
-        this.style.border = "5px solid green";
+    }
+    $div.onclick = function(e){
+        this.style.border = "5px solid green"
         alert("green")
-    }, false)
-    $body.addEventListener("click", function(){
-        this.style.border = "5px solid yellow";
+    }
+    $body.onclick = function(e){
+        this.style.border = "5px solid yellow"
         alert("yellow")
-    }, true)
+    }
+
+
+//    $input.addEventListener("click", function(){
+//        this.style.border = "5px solid red";
+//        alert("red")
+//    }, true)
+//    $div.addEventListener("click", function(){
+//        this.style.border = "5px solid green";
+//        alert("green")
+//    }, false)
+//    $body.addEventListener("click", function(){
+//        this.style.border = "5px solid yellow";
+//        alert("yellow")
+//    }, true)
 </script>
