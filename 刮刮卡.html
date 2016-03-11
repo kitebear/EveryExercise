@@ -6,22 +6,24 @@
     <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0;">
     <title>橡皮擦效果</title>
     <style type="text/css">
-        *{
-            padding:0px;
-            margin:0px;
+        * {
+            padding: 0px;
+            margin: 0px;
         }
-        .ggkBox{
-            width:120px;
-            height:40px;
-            line-height:40px;
-            font-size:14px;
-            color:#000;
-            font-weight:bold;
-            border:1px solid #999;
-            text-align:center;
-            position:relative;
-            margin:20px auto;
+
+        .ggkBox {
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            color: #000;
+            font-weight: bold;
+            border: 1px solid #999;
+            text-align: center;
+            position: relative;
+            margin: 20px auto;
         }
+
         .ggkBox canvas {
             position: absolute;
             left: 0px;
@@ -29,113 +31,112 @@
         }
     </style>
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded',function(){
-            var ggkBox=document.getElementById('ggkBox');//刮刮卡外盒子
-            var myCanvas=document.getElementById('myCanvas');//canvas对象
-            var ctx=myCanvas.getContext('2d');
-            ctx.fillStyle="#EEE6CD";
-            var radius=15;//刮动半径
-            var x1=0;//移动初始点横坐标
-            var y1=0;//移动初始点纵坐标
-            var x2=0;//移动结束点横坐标
-            var y2=0;//移动结束点纵坐标
+        document.addEventListener('DOMContentLoaded', function () {
+            var ggkBox = document.getElementById('ggkBox');//刮刮卡外盒子
+            var myCanvas = document.getElementById('myCanvas');//canvas对象
+            var ctx = myCanvas.getContext('2d');
+            ctx.fillStyle = "#EEE6CD";
+            var radius = 15;//刮动半径
+            var x1 = 0;//移动初始点横坐标
+            var y1 = 0;//移动初始点纵坐标
+            var x2 = 0;//移动结束点横坐标
+            var y2 = 0;//移动结束点纵坐标
             var ggkTimeout;//刮刮卡展示中奖信息延时
-            ctx.fillRect(0,0,myCanvas.width,myCanvas.height);
-            var touchMethod=function(){
-                var isTouch="ontouchstart" in window?true:false;
-                return{
-                    start:isTouch?"touchstart":"mousedown",
-                    move:isTouch?"touchmove":"mousemove",
-                    end:isTouch?"touchend":"mouseup"
+            ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
+            var touchMethod = function () {
+                var isTouch = "ontouchstart" in window ? true : false;
+                return {
+                    start: isTouch ? "touchstart" : "mousedown",
+                    move: isTouch ? "touchmove" : "mousemove",
+                    end: isTouch ? "touchend" : "mouseup"
                 }
             }();
-            myCanvas.addEventListener(touchMethod.start,function(e){
+            myCanvas.addEventListener(touchMethod.start, function (e) {
                 e.preventDefault();
                 clearTimeout(ggkTimeout);
-                try{
-                    x1= e.targetTouches[0].pageX-ggkBox.offsetLeft;
-                    y1= e.targetTouches[0].pageY-ggkBox.offsetTop;
-                }catch (ex){
-                    x1= e.pageX-ggkBox.offsetLeft;
-                    y1= e.pageY-ggkBox.offsetTop;
+                try {
+                    x1 = e.targetTouches[0].pageX - ggkBox.offsetLeft;
+                    y1 = e.targetTouches[0].pageY - ggkBox.offsetTop;
+                } catch (ex) {
+                    x1 = e.pageX - ggkBox.offsetLeft;
+                    y1 = e.pageY - ggkBox.offsetTop;
                 }
-
-
 
 
                 ctx.save();
                 ctx.beginPath();
-                ctx.arc(x1,y1,radius,0,2*Math.PI);
+                ctx.arc(x1, y1, radius, 0, 2 * Math.PI);
                 ctx.clip();
-                ctx.clearRect(0,0,myCanvas.width,myCanvas.height);
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
                 ctx.restore();
-                myCanvas.addEventListener(touchMethod.move,moveFn);
-                document.addEventListener(touchMethod.end,endFn);
+                myCanvas.addEventListener(touchMethod.move, moveFn);
+                document.addEventListener(touchMethod.end, endFn);
             });
             //TODO 移动函数
-            function moveFn(e){
+            function moveFn(e) {
                 e.preventDefault();
-                try{
-                    x2=e.targetTouches[0].pageX-ggkBox.offsetLeft;
-                    y2= e.targetTouches[0].pageY-ggkBox.offsetTop;
-                }catch(ex){
-                    x2=e.pageX-ggkBox.offsetLeft;
-                    y2= e.pageY-ggkBox.offsetTop;
+                try {
+                    x2 = e.targetTouches[0].pageX - ggkBox.offsetLeft;
+                    y2 = e.targetTouches[0].pageY - ggkBox.offsetTop;
+                } catch (ex) {
+                    x2 = e.pageX - ggkBox.offsetLeft;
+                    y2 = e.pageY - ggkBox.offsetTop;
                 }
 
                 ctx.save();
                 ctx.beginPath();
-                ctx.arc(x1,y1,radius,0,2*Math.PI);
+                ctx.arc(x1, y1, radius, 0, 2 * Math.PI);
                 ctx.clip();
-                ctx.clearRect(0,0,myCanvas.width,myCanvas.height);
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
                 ctx.restore();
 
 
                 ctx.save();
                 ctx.beginPath();
-                var asin = radius*Math.sin(Math.atan((y2-y1)/(x2-x1)));
-                var acos = radius*Math.cos(Math.atan((y2-y1)/(x2-x1)));
-                var x3 = x1+asin;
-                var y3 = y1-acos;
-                var x4 = x1-asin;
-                var y4 = y1+acos;
-                var x5 = x2+asin;
-                var y5 = y2-acos;
-                var x6 = x2-asin;
-                var y6 = y2+acos;
-                ctx.moveTo(x3,y3);
-                ctx.lineTo(x5,y5);
-                ctx.lineTo(x6,y6);
-                ctx.lineTo(x4,y4);
+                var asin = radius * Math.sin(Math.atan((y2 - y1) / (x2 - x1)));
+                var acos = radius * Math.cos(Math.atan((y2 - y1) / (x2 - x1)));
+                var x3 = x1 + asin;
+                var y3 = y1 - acos;
+                var x4 = x1 - asin;
+                var y4 = y1 + acos;
+                var x5 = x2 + asin;
+                var y5 = y2 - acos;
+                var x6 = x2 - asin;
+                var y6 = y2 + acos;
+                ctx.moveTo(x3, y3);
+                ctx.lineTo(x5, y5);
+                ctx.lineTo(x6, y6);
+                ctx.lineTo(x4, y4);
                 ctx.closePath();
                 ctx.clip();
-                ctx.clearRect(0,0,myCanvas.width,myCanvas.height);
+                ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
                 ctx.restore();
 
 
-                x1=x2;
-                y1=y2;
+                x1 = x2;
+                y1 = y2;
             }
+
             //TODO 移动结束函数
-            function endFn(e){
+            function endFn(e) {
                 e.preventDefault();
-                myCanvas.removeEventListener(touchMethod.move,moveFn);
-                document.removeEventListener(touchMethod.end,endFn);
-                ggkTimeout = setTimeout(function(){
-                    var imgData = ctx.getImageData(0,0,myCanvas.width,myCanvas.height).data;
+                myCanvas.removeEventListener(touchMethod.move, moveFn);
+                document.removeEventListener(touchMethod.end, endFn);
+                ggkTimeout = setTimeout(function () {
+                    var imgData = ctx.getImageData(0, 0, myCanvas.width, myCanvas.height).data;
                     var dd = 0;
-                    for(var i= 0,dataMax=imgData.length;i<dataMax-4;i+=4){
-                        if(imgData[i]+imgData[i+1]+imgData[i+2]+imgData[i+3]>0){
+                    for (var i = 0, dataMax = imgData.length; i < dataMax - 4; i += 4) {
+                        if (imgData[i] + imgData[i + 1] + imgData[i + 2] + imgData[i + 3] > 0) {
                             dd++;
                         }
                     }
-                    if(dd*4/dataMax<=0.7){
-                        myCanvas.style.display="none";
-                        setTimeout(function(){
+                    if (dd * 4 / dataMax <= 0.7) {
+                        myCanvas.style.display = "none";
+                        setTimeout(function () {
                             alert('恭喜中奖');
-                        },500);
+                        }, 500);
                     }
-                },100);
+                }, 100);
             }
         });
     </script>
@@ -143,6 +144,8 @@
 
 
 <body>
-<div class="ggkBox" id="ggkBox">恭喜中奖<canvas width="120px" height="40px" id="myCanvas"></canvas></div>
+<div class="ggkBox" id="ggkBox">恭喜中奖
+    <canvas width="120px" height="40px" id="myCanvas"></canvas>
+</div>
 </body>
 </html>
