@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var tagRE = /\{\{\{(.+?)\}\}\}|\{\{(.+?)\}\}/g
+        var htmlRE = /^\{\{\{.*\}\}\}$/
+        var text = "{{{eeee}}} {{dadasdsa}}"
+        var match,index,html,value,first,oneTime
+        var tokens = []
+        while (match = tagRE.exec(text)) {
+            console.log(match)
+//            console.log(match)
+////            index = match.index;
+//            html = htmlRE.test(match[0])
+//            value = html ? match[1] : match[2]
+//            first = value.charCodeAt(0);
+//            oneTime = first === 42; // *
+//            value = oneTime ? value.slice(1) : value;
+//            tokens.push({
+//                tag: true,
+//                value: value.trim(),
+//                html: html,
+//                oneTime: oneTime
+//            })
+        }
+    </script>
+</body>
+</html>
