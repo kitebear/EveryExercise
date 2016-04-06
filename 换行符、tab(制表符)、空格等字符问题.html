@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div{
+            font-size: 0px;
+            -webkit-text-size-adjust:none;  /* 使用webkit的私有属性，让字体大小不受设备终端的调整，可定义字体大小小于12px */
+            *word-spacing: -1px;             /* 使用word-spacing 修复 IE6、7中始终存在的 1px 空隙，减少单词间的空白（即字间隔） */
+        }
+        span{
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>行内元素</span>
+        <span>行内元素</span>
+        <span>行内元素</span>
+        <span>行内元素</span>
+        <span>行内元素</span>
+    </div>
+    <script>
+//        但是效果图确实下面这样子，这是因为，默认情况，浏览器在解析 html 时，HTML 源码中的空白符均被显示为空格，并且连续的多个空白符会被视为一个。
+//        HTML 中的“空白符”包括：空格 (space)、制表符 (tab)、换行符 (CR/LF) 三种。
+    </script>
+</body>
+</html>
