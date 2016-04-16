@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function completed(){
+            console.log("加载执行")
+            document.removeEventListener( "DOMContentLoaded", completed, false );
+            window.removeEventListener( "load", completed, false );
+        }
+
+        function completed1(){
+            console.log("鸡杂")
+            document.removeEventListener( "DOMContentLoaded", completed, false );
+            window.removeEventListener( "load", completed, false );
+        }
+
+        document.addEventListener('DOMContentLoaded', completed, false)
+        window.addEventListener('load',completed, false)
+    </script>
+</body>
+</html>
